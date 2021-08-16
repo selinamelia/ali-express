@@ -4,10 +4,10 @@ seeder:
 parsers:
   - page_type: listings
     file: ./parsers/listings.rb
-    disabled: true
+    disabled: false
   - page_type: products
     file: ./parsers/products.rb
-    disabled: true
+    disabled: false
 exporters:
   - file: ./exporters/products_json.yaml 
-    disabled: true
+    disabled: false
