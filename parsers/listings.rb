@@ -1,8 +1,8 @@
 nokogiri = Nokogiri.HTML(content)
 
-products = nokogiri.css('#list-items li')
+products = nokogiri.css('div.JIIxO > div._1OUGS')
 products.each do |product|
-    a_element = product.at_css('a.product')
+    a_element = product.at_css('a.awV9E > span')&.text
     if a_element
         url = URI.join('https:', a_element['href']).to_s.split('?').first
         if url =~ /\Ahttps?:\/\//i
