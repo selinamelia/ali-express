@@ -7,7 +7,7 @@ parsers:
     disabled: false
   - page_type: products
     file: ./parsers/products.rb
-    disabled: false
+    disabled: true
 exporters:
   - file: ./exporters/products_json.yaml 
-    disabled: false
+    disabled: true

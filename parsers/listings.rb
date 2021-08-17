@@ -20,17 +20,16 @@ products.each do |product|
     end
 end
 
-p pages
 
-#load paginated links
-# pagination_links = nokogiri.css('next-pagination-list')
-# pagination_links.each do |link|
-#     l_val = link.text.strip
-#     if l_val !~ /next|previous/i && l_val.to_i < 8 #limit pagination to 7 pages
-#         url = URI.join('https://www.aliexpress.com/category/100003109/women-clothing.html?page=', l_val)
-#         pages << {
-#             url: url,
-#             page_type: 'listings'
-#         }
-#     end
-# end
+load paginated links
+pagination_links = nokogiri.css('next-pagination-list')
+pagination_links.each do |link|
+    l_val = link.text.strip
+    if l_val !~ /next|previous/i && l_val.to_i < 8 #limit pagination to 7 pages
+        url = URI.join('https://www.aliexpress.com/category/100003109/women-clothing.html?page=', l_val)
+        pages << {
+            url: url,
+            page_type: 'listings'
+        }
+    end
+end
