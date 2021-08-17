@@ -20,6 +20,8 @@ products.each do |product|
     end
 end
 
+p pages
+
 #load paginated links
 # pagination_links = nokogiri.css('next-pagination-list')
 # pagination_links.each do |link|
