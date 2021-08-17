@@ -22,7 +22,7 @@ end
 
 
 # load paginated links
-pagination_links = nokogiri.at_css('button.next-btn next-medium next-btn-normal next-pagination-item next-current')
+pagination_links = nokogiri.css('button.next-btn next-medium next-btn-normal next-pagination-item next-current')
 pagination_links.each do |link|
     l_val = link.text.strip
     if l_val !~ /next|previous/i && l_val.to_i < 8 #limit pagination to 7 pages
