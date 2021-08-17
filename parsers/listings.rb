@@ -1,7 +1,6 @@
 nokogiri = Nokogiri.HTML(content)
 
-products = nokogiri.css('div.JIIxO div._1OUGS')
-p products
+products = nokogiri.css('div.JIIxO > div._1OUGS')
 products.each do |product|
     a_element = product.at_css('a.awV9E')
     if a_element
@@ -12,10 +11,10 @@ products.each do |product|
                 page_type: 'products',
                 fetch_type: 'browser',
                 force_fetch: true,
-                vars: {
-                    category: page['vars']['category'],
-                    url: url
-                }
+                # vars: {
+                #     category: page['vars']['category'],
+                #     url: url
+                # }
             }
         end
     end
