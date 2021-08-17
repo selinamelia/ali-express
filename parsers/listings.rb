@@ -1,6 +1,7 @@
 nokogiri = Nokogiri.HTML(content)
 
 products = nokogiri.css('div.JIIxO div._1OUGS')
+p products
 products.each do |product|
     a_element = product.at_css('a.awV9E')
     if a_element
@@ -20,7 +21,6 @@ products.each do |product|
     end
 end
 
-p pages
 #load paginated links
 # pagination_links = nokogiri.css('next-pagination-list')
 # pagination_links.each do |link|
