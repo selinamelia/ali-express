@@ -26,7 +26,7 @@ pagination_links = nokogiri.css('button.next-btn next-medium next-btn-normal nex
 pagination_links.each do |link|
     l_val = link.text.strip
     if l_val !~ /next|previous/i && l_val.to_i < 8 #limit pagination to 7 pages
-        url = URI.join('https://www.aliexpress.com/category/100003109/women-clothing.html?page=', l_val)
+        url = URI.join('https://www.aliexpress.com/category/100003109/women-clothing.html?page=', l_val).to_s
         pages << {
             url: url,
             page_type: 'listings'
