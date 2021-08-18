@@ -2,8 +2,8 @@ nokogiri = Nokogiri.HTML(content)
 
 products = nokogiri.css('div.JIIxO > div._1OUGS')
 products.each do |product|
-    a_element = product.at_css('a.awV9E > span').text
-    # name = product.at_css('a.awV9E > span')&.text
+    a_element = product.at_css('a._9tla3')
+    name = product.at_css('a.awV9E > span')&.text
     if a_element
         url = URI.join('https://www.aliexpress.com', a_element['href']).to_s.split('?').first
         if url =~ /\Ahttps?:\/\//i
