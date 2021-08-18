@@ -42,7 +42,7 @@ if current_page == 1
             }
         }
 
-        if i >= max_listing_page_to_scrape
+        if i >= max_page
             break 
         end
     end
