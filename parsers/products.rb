@@ -11,10 +11,10 @@ product['url'] = page['vars']['url']
 product['category'] = page['vars']['category']
 
 #extract title
-product['title'] = nokogiri.at_css('.product-name').text.strip
+product['title'] = nokogiri.at_css('a.awV9E > span').text.strip
 
 #extract product image
-product['image_url'] = nokogiri.at_css('#magnifier img')['src']
+product['image_url'] = nokogiri.at_css('img.A3Q1M')['src']
 
 #extract discount price
 discount_element = nokogiri.at_css('span#j-sku-discount-price')
