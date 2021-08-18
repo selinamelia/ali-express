@@ -10,4 +10,4 @@ parsers:
     disabled: false
 exporters:
   - file: ./exporters/products_json.yaml 
-    disabled: true
+    disabled: false
