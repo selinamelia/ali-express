@@ -1,6 +1,6 @@
 nokogiri = Nokogiri.HTML(content)
 
-products = nokogiri.css('div.JIIxO > div._1OUGS')
+products = nokogiri.css('div._1OUGS')
 products.each do |product|
     a_element = product.at_css('a._9tla3')
     name = product.at_css('a.awV9E > span')&.text
