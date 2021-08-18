@@ -11,7 +11,7 @@ product['url'] = page['vars']['url']
 product['category'] = page['vars']['category']
 
 #extract title
-product['title'] = nokogiri.at_css('product-title-text').text.strip
+product['title'] = nokogiri.at_css('h1.product-title-text').text.strip
 
 #extract product image
 product['image_url'] = nokogiri.at_css('img.magnifier-image')['src']
