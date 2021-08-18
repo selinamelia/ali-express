@@ -30,10 +30,10 @@ product['discount_element'] = nokogiri.at_css('span.product-price-mark')
 # end
 
 #extract discount price
-product['current_price'] = nokogiri.at_css('span.product-price-current > span.product-price-value').text.strip
+#product['current_price'] = nokogiri.at_css('span.product-price-current > span.product-price-value').text.strip
 
 #extract original price
-price_element = nokogiri.at_css('span.product-price-del > span.product-price-value').text.strip
+#price_element = nokogiri.at_css('span.product-price-del > span.product-price-value').text.strip
 
 
 # if price_element
@@ -46,17 +46,17 @@ price_element = nokogiri.at_css('span.product-price-del > span.product-price-val
 # end
 
 #extract categories
-breadcrumb_categories = nokogiri.at_css('.ui-breadcrumb').text.strip
-categories = breadcrumb_categories.split('>').map{|category| category.strip }
-categories.delete('Home')
-product['categories'] = categories
+# breadcrumb_categories = nokogiri.at_css('.ui-breadcrumb').text.strip
+# categories = breadcrumb_categories.split('>').map{|category| category.strip }
+# categories.delete('Home')
+# product['categories'] = categories
 
-#extract SKUs
-skus_element = nokogiri.css('ul.sku-attr-list').find{|ul| ul['data-sku-prop-id'] == '14' }
-if skus_element
-    skus = skus_element.css('a').collect{|a| a['title'] }
-    product['skus'] = skus
-end
+# #extract SKUs
+# skus_element = nokogiri.css('ul.sku-attr-list').find{|ul| ul['data-sku-prop-id'] == '14' }
+# if skus_element
+#     skus = skus_element.css('a').collect{|a| a['title'] }
+#     product['skus'] = skus
+# end
 
 #extract sizes
 product['size'] = nokogiri.at_css('span.sku-title-value').text
