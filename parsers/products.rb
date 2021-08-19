@@ -17,7 +17,7 @@ product['title'] = nokogiri.at_css('h1.product-title-text').text
 product['image_url'] = nokogiri.at_css('img.magnifier-image')['src']
 
 #extract discount 
-product['discount'] = nokogiri.at_css('span.product-price-mark').text
+product['discount'] = nokogiri.at_css('span.product-price-mark')
 
 # price_element = nokogiri.css('.product-price')
 # if price_element
