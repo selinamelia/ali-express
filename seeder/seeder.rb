@@ -9,7 +9,7 @@ pages << {
     code: "await page.evaluate('window.scrollBy(0,1200)'); await sleep(1000); await page.evaluate('window.scrollBy(0,1200)'); await sleep(1000);await page.evaluate('window.scrollBy(0,1200)'); await sleep(1000);await page.evaluate('window.scrollBy(0,1200)'); await sleep(1000);"
   },
   vars: {
-    category: "Women's clothing"
-    # page_num: 1
+    category: "Women's clothing",
+    page_num: 1
   }
 }
