@@ -46,7 +46,7 @@ if sizes_element
 end
 
 #extract rating and reviews
-rating = product['rating'] = nokogiri.at_css('div.positive-fdbk')[0].text
+rating = nokogiri.at_css('div.positive-fdbk')[0].text
 if rating
     product['rating'] = rating
 end
