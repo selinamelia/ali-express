@@ -11,13 +11,13 @@ product['url'] = page['vars']['url']
 product['category'] = page['vars']['category']
 
 #extract title
-product['title'] = nokogiri.at_css('h1.product-title-text').text.strip
+product['title'] = nokogiri.at_css('h1.product-title-text').text
 
 #extract product image
 product['image_url'] = nokogiri.at_css('img.magnifier-image')['src']
 
 #extract discount 
-product['discount'] = nokogiri.at_css('span.product-price-mark').text.strip
+product['discount'] = nokogiri.at_css('span.product-price-mark').text
 
 # if discount_element
 #     discount_low_price = discount_element.css('span').find{|span| span['itemprop'] == 'lowPrice' }
