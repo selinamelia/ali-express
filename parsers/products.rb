@@ -19,30 +19,30 @@ product['image_url'] = nokogiri.at_css('img.magnifier-image')['src']
 #extract discount 
 product['discount'] = nokogiri.at_css('span.product-price-mark').text
 
-price_element = nokogiri.css('.product-price')
-if price_element
-    #extract discounted price
-    product['current_price'] = price_element.at_css('span.product-price-current span').text
+# price_element = nokogiri.css('.product-price')
+# if price_element
+#     #extract discounted price
+#     product['current_price'] = price_element.at_css('product-price-value span.product-price-value').text
 
-    #extract original price
-    product['original_price'] = price_element.at_css('span.product-price-del span').text
-end
+#     #extract original price
+#     product['original_price'] = price_element.at_css('span.product-price-del span.product-price-value').text
+# end
 
 #extract SKUs
-skus_element = nokogiri.css('.product-quantity-tip')
-if skus_element
-    skus = skus_element.at_css('span span').text
-    product['skus'] = skus
-end
+# skus_element = nokogiri.css('.product-quantity-tip')
+# if skus_element
+#     skus = skus_element.at_css('span span').text
+#     product['skus'] = skus
+# end
 
 #extract sizes
-product['size'] = nokogiri.at_css('span.sku-title-value').text
+# product['size'] = nokogiri.at_css('span.sku-title-value').text
 
 #extract rating and reviews
-product['rating'] = nokogiri.at_css('div.positive-fdbk')[1].text
+# product['rating'] = nokogiri.at_css('div.positive-fdbk')[1].text
 
 #extract orders count
-product['orders_count'] = nokogiri.at_css('span.product-reviewer-sold').text.strip.split(' ').first.to_i
+# product['orders_count'] = nokogiri.at_css('span.product-reviewer-sold').text.strip.split(' ').first.to_i
 
 
 # #extract shipping info
