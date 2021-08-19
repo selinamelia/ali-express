@@ -45,11 +45,11 @@ if sizes_element
 	product['sizes'] = sizes
 end
 
-#extract rating and reviews
-rating = nokogiri.at_css('div.positive-fdbk')[0].text
-if rating
-    product['rating'] = rating
-end
+#extract rating and reviews FAILED
+# rating = nokogiri.at_css('div.positive-fdbk')[0].text
+# if rating
+#     product['rating'] = rating
+# end
 
 #extract orders count
 product['orders_count'] = nokogiri.at_css('span.product-reviewer-sold').text.strip.split(' ').first.to_i
