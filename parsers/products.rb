@@ -16,33 +16,39 @@ product['title'] = nokogiri.at_css('h1.product-title-text').text
 #extract product image
 product['image_url'] = nokogiri.at_css('img.magnifier-image')['src']
 
-#extract discount 
-product['discount'] = nokogiri.at_css('span.product-price-mark')
-
-# price_element = nokogiri.css('.product-price')
-# if price_element
-#     #extract discounted price
-#     product['current_price'] = price_element.at_css('product-price-value span.product-price-value').text
-
-#     #extract original price
-#     product['original_price'] = price_element.at_css('span.product-price-del span.product-price-value').text
-# end
+price_element = nokogiri.css('.product-price')
+if price_element
+    #extract discounted price
+    product['current_price'] = price_element.at_css('product-price-value span.product-price-value').text
+    #extract discount 
+    product['discount'] = nokogiri.at_css('span.product-price-mark')&.text
+    if  product['discount']
+         #extract original price
+        product['original_price'] = price_element.at_css('.product-price-original .product-price-del span').text
+    end
+   
+    
+end
 
 #extract SKUs
-# skus_element = nokogiri.css('.product-quantity-tip')
-# if skus_element
-#     skus = skus_element.at_css('span span').text
-#     product['skus'] = skus
-# end
+skus_element = nokogiri.css('.product-quantity-tip')
+if skus_element
+    skus = skus_element.at_css('span span').text
+    product['skus'] = skus
+end
 
 #extract sizes
-# product['size'] = nokogiri.at_css('span.sku-title-value').text
+sizes_element = nokogiri.css('ul.sku-property-list')
+if sizes_element
+	sizes = sizes_element.css('div.sku-property-text').collect {|i| i.text.strip}
+	product['sizes'] = sizes
+end
 
 #extract rating and reviews
-# product['rating'] = nokogiri.at_css('div.positive-fdbk')[1].text
+product['rating'] = nokogiri.at_css('div.positive-fdbk')[0].text
 
 #extract orders count
-# product['orders_count'] = nokogiri.at_css('span.product-reviewer-sold').text.strip.split(' ').first.to_i
+product['orders_count'] = nokogiri.at_css('span.product-reviewer-sold').text.strip.split(' ').first.to_i
 
 
 # #extract shipping info
@@ -56,7 +62,9 @@ return_element = nokogiri.css('div.buyer-pretection-content')
 if return_element
     return_policy_title = return_element.at_css('div.buyer-pretection-title').text.strip
     return_policy_context = return_element.at_css('div.buyer-pretection-context').text.strip
-    product['return_policy'] = return_policy_title + ". " + return_policy_context
+    if return_policy_title && return_policy_context
+        product['return_policy'] = return_policy_title + ". " + return_policy_context
+    end
 end
 
 # #extract guarantee
