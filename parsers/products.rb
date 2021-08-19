@@ -16,19 +16,20 @@ product['title'] = nokogiri.at_css('h1.product-title-text').text
 #extract product image
 product['image_url'] = nokogiri.at_css('img.magnifier-image')['src']
 
-price_element = nokogiri.css('.product-price')
-if price_element
-    #extract discounted price
-    product['current_price'] = price_element.at_css('product-price-value span.product-price-value').text
-    #extract discount 
-    product['discount'] = nokogiri.at_css('span.product-price-mark')&.text
-    if  product['discount']
-         #extract original price
-        product['original_price'] = price_element.at_css('.product-price-original .product-price-del span').text
-    end
-   
-    
-end
+# price_element = nokogiri.css('.product-price')
+# if price_element
+#     #extract discounted price
+#     current_price = price_element.at_css('product-price-value span.product-price-value').text
+#     if current_price
+#         product['current_price'] = current_price
+#     end
+#     #extract discount 
+#     product['discount'] = nokogiri.at_css('span.product-price-mark')&.text
+#     if  product['discount']
+#         #extract original price
+#         product['original_price'] = price_element.at_css('.product-price-original .product-price-del span').text
+#     end
+# end
 
 #extract SKUs
 skus_element = nokogiri.css('.product-quantity-tip')
