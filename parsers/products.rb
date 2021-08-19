@@ -17,7 +17,7 @@ product['title'] = nokogiri.at_css('h1.product-title-text').text.strip
 product['image_url'] = nokogiri.at_css('img.magnifier-image')['src']
 
 #extract discount 
-product['discount_element'] = nokogiri.at_css('span.product-price-mark')
+product['discount'] = nokogiri.at_css('span.product-price-mark').text.strip
 
 # if discount_element
 #     discount_low_price = discount_element.css('span').find{|span| span['itemprop'] == 'lowPrice' }
@@ -29,21 +29,18 @@ product['discount_element'] = nokogiri.at_css('span.product-price-mark')
 #     end
 # end
 
-#extract discount price
-#product['current_price'] = nokogiri.at_css('span.product-price-current > span.product-price-value').text.strip
 
-#extract original price
-#price_element = nokogiri.at_css('span.product-price-del > span.product-price-value').text.strip
+product['original_price'] = nokogiri.at_css('span.product-price-del span.product-price-value').text.strip
 
+price_element = nokogiri.css('.product-price')
+if price_element
+    #extract discounted price
+    product['current_price'] = price_element.at_css('span.product-price-current span').text
 
-# if price_element
-#     price_array = price_element.text.strip.split('-')
-#     if price_array.size > 1
-#         product['original_low_price'], product['original_high_price'] = price_array.map{|price| price.strip.to_f }
-#     else
-#         product['original_price'] = price_array.first.strip.to_f
-#     end
-# end
+    #extract original price
+    product['original_price'] = price_element.at_css('span.product-price-del span').text
+end
+
 
 #extract categories
 # breadcrumb_categories = nokogiri.at_css('.ui-breadcrumb').text.strip
@@ -51,31 +48,21 @@ product['discount_element'] = nokogiri.at_css('span.product-price-mark')
 # categories.delete('Home')
 # product['categories'] = categories
 
-# #extract SKUs
-# skus_element = nokogiri.css('ul.sku-attr-list').find{|ul| ul['data-sku-prop-id'] == '14' }
-# if skus_element
-#     skus = skus_element.css('a').collect{|a| a['title'] }
-#     product['skus'] = skus
-# end
+#extract SKUs
+skus_element = nokogiri.css('.product-quantity-tip')
+if skus_element
+    skus = skus_element.at_css('span span').text
+    product['skus'] = skus
+end
 
 #extract sizes
 product['size'] = nokogiri.at_css('span.sku-title-value').text
-# sizes_element = nokogiri.css('ul.sku-attr-list').find{|ul| ul['data-sku-prop-id'] == '5' }
-# if sizes_element
-#     sizes = sizes_element.css('a').collect{|a| a.text.strip }
-#     product['sizes'] = sizes
-# end
 
 #extract rating and reviews
-# rating_element = nokogiri.at_css('span.ui-rating-star')
-# if rating_element
-#     rating_value = rating_element.css('span').find{|span| span['itemprop'] == 'ratingValue' }
-#     product['rating'] = rating_value.text.strip.to_f if rating_value
-#     review_count = rating_element.css('span').find{|span| span['itemprop'] == 'reviewCount' }
-#     product['reviews_count'] = review_count.text.strip.to_i if review_count
-# end
+product['rating'] = nokogiri.at_css('div.positive-fdbk')[1].text
 
 #extract orders count
+product['orders_count'] = nokogiri.at_css('span.product-reviewer-sold').text.strip.split(' ').first.to_i
 # order_count_element = nokogiri.at_css('#j-order-num')
 # if order_count_element
 #     product['orders_count'] = order_count_element.text.strip.split(' ').first.to_i
@@ -87,11 +74,13 @@ product['size'] = nokogiri.at_css('span.sku-title-value').text
 #     product['shipping_info'] = shipping_element.text.strip.gsub(/\s\s+/, ' ')
 # end
 
-# #extract return policy
-# return_element = nokogiri.at_css('#j-seller-promise-list')
-# if return_element
-#     product['return_policy'] = return_element.at_css('.s-serve').text.strip
-# end
+# extract return policy
+return_element = nokogiri.css('div.buyer-pretection-content')
+if return_element
+    return_policy_title = return_element.at_css('div.buyer-pretection-title').text.strip
+    return_policy_context = return_element.at_css('div.buyer-pretection-context').text.strip
+    product['return_policy'] = return_policy_title + ". " + return_policy_context
+end
 
 # #extract guarantee
 # guarantee_element = nokogiri.at_css('#serve-guarantees-detail')
