@@ -10,6 +10,6 @@ pages << {
   },
   vars: {
     category: "Women's clothing"
-    page_num: 1
+    # page_num: 1
   }
 }

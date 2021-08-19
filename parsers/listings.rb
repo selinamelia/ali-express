@@ -17,7 +17,7 @@ products.each do |product|
                 vars: {
                     category: page['vars']['category'],
                     url: url,
-                    page_num: page['vars']['page_num']
+                    # page_num: page['vars']['page_num']
                     # name: name
                 }
             }
@@ -33,7 +33,7 @@ pages << {
 	method: 'GET',
 	headers: {"User-Agent" => "User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"},
 	vars: {
-		page_num: 2
+		 # page_num: 2
 	}
 }
 
