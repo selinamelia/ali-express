@@ -64,6 +64,7 @@ product['orders_count'] = nokogiri.at_css('span.product-reviewer-sold').text.str
 # extract return policy
 return_element = nokogiri.css('div.buyer-pretection-content')
 if return_element
+    ## eror
     return_policy_title = return_element.at_css('div.buyer-pretection-title').text.strip
     return_policy_context = return_element.at_css('div.buyer-pretection-context').text.strip
     if return_policy_title && return_policy_context
